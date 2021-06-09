@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Gym TEC- Branch Manager</title>
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <app-sidebar></app-sidebar>
+        <!-- End of Sidebar --><!-- Vertically centered modal -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User LogOut -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a type="button" class="dropdown-item" href="login" data-toggle="modal" data-target="#logoutModalLabel" >
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Log Out <i class="bi bi-door-open"></i></span>
+                            </a>
+                            <!-- Dropdown - User LogOut -->
+                           
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Service and Equipment Management</h1>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-plus-circle"></i> Services</button>
+                        
+                          
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        
+                        <!-- New device card alloes the user to enter information an then hit save, this sends a post to the function On New and creates a new device with the info entered-->
+                         <!--Note that just the Serial,Brand,Electrical consumption,Device Category are require, if this infomation is not entered the user is going to receive an error messsage -->
+                        <div class="col-xl-12 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Equipment Type</div>
+                                            <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
+                                                <div class="alert alert-danger" role="alert" *ngIf="isError">
+                                                    Something is wrong!
+                                                </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text bg-primary text-white" id="basic-addon3">ID</span>     
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                                <span class="input-group-text" id="basic-addon3">Description</span>     
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                            </div>
+                                                <button class="btn btn-outline-success" type="submit">
+                                                    <i class="bi bi-arrow-90deg-down"> Save New Equipment Type</i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4" *ngFor="let device of listaDisp; index as i">
+                            <div class="card border-left-{{colors[i]}} shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-0">
+                                            <div class="text-xs font-weight-bold text-{{colors[i]}} text-uppercase mb-1">
+                                                {{device.Nombre}}</div>
+                                                <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
+                                                    <div class="alert alert-danger" role="alert" *ngIf="isError">
+                                                        Something is wrong!
+                                                    </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text bg-primary text-white" id="basic-addon3">ID</span>     
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                                    <span class="input-group-text" id="basic-addon3">Description</span>     
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                                </div>
+                                                    <button class="btn btn-outline-success" type="submit">
+                                                        <i class="bi bi-arrow-90deg-down"> Save Equipment Type</i>
+                                                    </button>
+                                                </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Manage Services</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group mb-3">
+                <span class="input-group-text bg-primary text-white" id="basic-addon2">ID</span>  
+                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                aria-label="Search" aria-describedby="basic-addon3"  required>
+                <span class="input-group-text" id="basic-addon2">Description</span>     
+                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                aria-label="Search" aria-describedby="basic-addon3"  required>
+                <button type="button" class="btn btn-info"><i class="bi bi-plus-circle"></i></button>
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text bg-primary text-white" id="basic-addon2">ID</span>  
+                <input type="text" class="form-control bg-light border-0 small" placeholder="SERV01" name=Serie
+                aria-label="Search" aria-describedby="basic-addon3"  required>
+                <span class="input-group-text" id="basic-addon2">Description</span>     
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Indoor Cycling" name=Serie
+                aria-label="Search" aria-describedby="basic-addon3"  required>
+                <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+              </div>
+              
+
+              
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; YenUS 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+</body>
+</html>
+

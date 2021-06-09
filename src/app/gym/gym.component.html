@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Gym TEC- Gym Manager</title>
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <app-sidebar></app-sidebar>
+        <!-- End of Sidebar --><!-- Vertically centered modal -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User LogOut -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a type="button" class="dropdown-item" href="login" data-toggle="modal" data-target="#logoutModalLabel" >
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Log Out <i class="bi bi-door-open"></i></span>
+                            </a>
+                            <!-- Dropdown - User LogOut -->
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-3">
+                        <h1 class="h3 mb-0 text-gray-800">Gym Management</h1>
+                        <form #formProfile="ngForm" (ngSubmit)="onGym(formProfile)">
+                            
+                            <div class="form-group d-none d-sm-inline-block mb-1">
+                                
+                                <div class="input-group mb-1">
+                                    
+                                    <span class="input-group-text" id="basic-addon3"> Gym</span> 
+                                <select class="form-control" id="inputGroupSelect" name=region ngModel>
+                                    <option value="America">Gym Ex1</option>
+                                    <option value="Asia">Gym Ex2</option>
+                                    <option value="Africa">Gym Ex3</option>
+                                    <option value="Europa">Gym Ex4</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i></button>
+                              </div>
+                            </div>
+                            <button type="button" class="btn btn-info">
+                                <i class="bi bi-clipboard"></i> Copy Gym 
+                                  </button>
+                    </form>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        
+                        <!-- New device card alloes the user to enter information an then hit save, this sends a post to the function On New and creates a new device with the info entered-->
+                         <!--Note that just the Serial,Brand,Electrical consumption,Device Category are require, if this infomation is not entered the user is going to receive an error messsage -->
+                        <div class="col-xl-6 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-2">
+                                                Gym SPA Treatments Management</div>
+                                            <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
+                                                <div class="alert alert-danger" role="alert" *ngIf="isError">
+                                                    Something is wrong!
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text bg-primary text-white" id="basic-addon2">#SPA01</span> 
+                                                    <span class="input-group-text" id="basic-addon2">Relaxing massage</span> 
+                                                    <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+                                                  </div>
+                                                  <div class="input-group mb-3">
+                                                    <span class="input-group-text bg-primary text-white" id="basic-addon2">#SPA02</span> 
+                                                    <span class="input-group-text" id="basic-addon2">Muscle discharge massage</span> 
+                                                    <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+                                                  </div>
+                                                  <div class="input-group mb-3">
+                                                    <span class="input-group-text bg-primary text-white" id="basic-addon2">#SPA03</span> 
+                                                    <span class="input-group-text" id="basic-addon2">Sauna</span> 
+                                                    <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+                                                  </div>
+                                                  <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon3">Add New Treatment</span> 
+                                                <select class="form-control" id="inputGroupSelect" name=region ngModel>
+                                                    <option value="America">#SPA01, Relaxing massage</option>
+                                                    <option value="Asia">#SPA02, Muscle discharge massage</option>
+                                                    <option value="Africa">#SPA03, Sauna</option>
+                                                    <option value="Europa">#SPA04, Steam baths</option>
+                                                </select>
+                                                <button type="button" class="btn btn-info"><i class="bi bi-plus-circle"></i></button>
+                                              </div>
+                                            
+                                                <button class="btn btn-info" type="submit">
+                                                    <i class="bi bi-arrow-90deg-down"> Save Changes</i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New device card alloes the user to enter information an then hit save, this sends a post to the function On New and creates a new device with the info entered-->
+                         <!--Note that just the Serial,Brand,Electrical consumption,Device Category are require, if this infomation is not entered the user is going to receive an error messsage -->
+                         <div class="col-xl-6 col-md-6 mb-4">
+                            <div class="card border-left-secondary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-2">
+                                                Gym Products Management</div>
+                                                <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
+                                                    <div class="alert alert-danger" role="alert" *ngIf="isError">
+                                                        Something is wrong!
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">#1231</span> 
+                                                        <span class="input-group-text" id="basic-addon2">Suplemento</span> 
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">₡15000</span> 
+                                                        <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+                                                      </div>
+                                                      <div class="input-group mb-3">
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">#1234</span> 
+                                                        <span class="input-group-text" id="basic-addon2">Esteroide</span> 
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">₡30000</span> 
+                                                        <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+                                                      </div>
+                                                      <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="basic-addon3">Add New Product</span> 
+                                                    <select class="form-control" id="inputGroupSelect" name=region ngModel>
+                                                        <option value="America" disabled>#1231, Suplemento, ₡15000</option>
+                                                        <option value="Asia">#1234, Esteroide, ₡30000</option>
+                                                    </select>
+                                                    <button type="button" class="btn btn-secondary"><i class="bi bi-plus-circle"></i></button>
+                                                  </div>
+                                                
+                                                    <button class="btn btn-secondary" type="submit">
+                                                        <i class="bi bi-arrow-90deg-down"> Save Changes</i>
+                                                    </button>
+                                                </form>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New device card alloes the user to enter information an then hit save, this sends a post to the function On New and creates a new device with the info entered-->
+                         <!--Note that just the Serial,Brand,Electrical consumption,Device Category are require, if this infomation is not entered the user is going to receive an error messsage -->
+                         <div class="col-xl-6 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-2">
+                                                Gym Inventory Management</div>
+                                                <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
+                                                    <div class="alert alert-danger" role="alert" *ngIf="isError">
+                                                        Something is wrong!
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">#AC871</span> 
+                                                        <span class="input-group-text" id="basic-addon2">Bicicletas Estacionarias</span> 
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Trek</span>
+                                                        <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+                                                      </div>
+                                                      <div class="input-group mb-3">
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">#AC872</span> 
+                                                        <span class="input-group-text" id="basic-addon2">Bicicletas Estacionarias</span> 
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Specialized</span>
+                                                        <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+                                                      </div>
+                                                      <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="basic-addon3">Add New Machine</span> 
+                                                    <select class="form-control" id="inputGroupSelect" name=region ngModel>
+                                                        <option value="1" disabled>#AC871, Bicicletas Estacionarias, Trek</option>
+                                                        <option value="2">#AC872, Bicicletas Estacionarias, Specialized</option>
+                                                    </select>
+                                                    <button type="button" class="btn btn-secondary"><i class="bi bi-plus-circle"></i></button>
+                                                  </div>
+                                                
+                                                    <button class="btn btn-success" type="submit">
+                                                        <i class="bi bi-arrow-90deg-down"> Save Changes</i>
+                                                    </button>
+                                                </form>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New device card alloes the user to enter information an then hit save, this sends a post to the function On New and creates a new device with the info entered-->
+                         <!--Note that just the Serial,Brand,Electrical consumption,Device Category are require, if this infomation is not entered the user is going to receive an error messsage -->
+                         <div class="col-xl-6 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-2">
+                                                Gym Class Management‎‎‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎  ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎  ‎‎‎‎‎‎‎‎
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#Modal">
+                                                <i class="bi bi-clipboard"></i> Copy
+                                                  </button>
+                                            </div>
+                                                
+                                                <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
+                                                    <div class="alert alert-danger" role="alert" *ngIf="isError">
+                                                        Something is wrong!
+                                                    </div>
+                                                    <div class="input-group mb-1">
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Type</span>  
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  required>
+                                                        <span class="input-group-text" id="basic-addon2">Instructor</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  required>
+                                                        
+                                                      </div>
+                                                      <div class="input-group mb-1">
+                                                        <span class="input-group-text" id="basic-addon2">Mode</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  required>
+                                                        <span class="input-group-text" id="basic-addon2">Capacity</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  required>
+                                                        <span class="input-group-text" id="basic-addon2">Start</span>     
+                                                        <input class="form-control" type="time" id="example-time-input">
+                                                        
+                                                      </div>
+                                                      <div class="input-group mb-4">
+                                                        
+                                                        <span class="input-group-text" id="basic-addon2">End</span>     
+                                                        <input class="form-control" type="time"  id="example-time-input">
+                                                        <span class="input-group-text" id="basic-addon3">Date</span>  
+                                                        <input class="form-control" type="date" name=date ngModel>
+                                                        <button type="button" class="btn btn-info"><i class="bi bi-plus-circle"></i></button>
+                                                      </div>
+                                                      <div class="input-group mb-1">
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Type</span>  
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Ponerse Mamado" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  required>
+                                                        <span class="input-group-text" id="basic-addon2">Instructor</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Antonio Cespedes" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  required>
+                                                        
+                                                      </div>
+                                                      <div class="input-group mb-1">
+                                                        <span class="input-group-text" id="basic-addon2">Mode</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Grupal" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  required>
+                                                        <span class="input-group-text" id="basic-addon2">Capacity</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="7" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  required>
+                                                        <span class="input-group-text" id="basic-addon2">Start</span>     
+                                                        <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+                                                        
+                                                      </div>
+                                                      <div class="input-group mb-4">
+                                                        
+                                                        <span class="input-group-text" id="basic-addon2">End</span>     
+                                                        <input class="form-control" type="time" value="14:45:00" id="example-time-input">
+                                                        <span class="input-group-text" id="basic-addon3">Date</span>  
+                                                        <input class="form-control" type="date" name=date ngModel>
+                                                        <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+                                                      </div>
+                                                
+                                                    <button class="btn btn-warning" type="submit">
+                                                        <i class="bi bi-arrow-90deg-down"> Save Changes</i>
+                                                    </button>
+                                                </form>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Copy Classes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">To Gym</span> 
+            <select class="form-control" id="inputGroupSelect" name=region ngModel>
+                <option value="America">Gym Ex1</option>
+                <option value="Asia">Gym Ex2</option>
+                <option value="Africa">Gym Ex3</option>
+                <option value="Europa">Gym Ex4</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3">On the</span> 
+          <input class="form-control" type="week" value="2021-W25" id="example-week-input">
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; YenUS 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+</body>
+</html>
