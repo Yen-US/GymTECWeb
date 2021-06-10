@@ -1,5 +1,5 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { JsonService } from "../json.service"
 import { NgForm } from '@angular/forms';
@@ -14,7 +14,7 @@ import htmlToPdfmake from "html-to-pdfmake"
   templateUrl: './empleados.component.html',
   styleUrls: ['./empleados.component.css']
 })
-export class EmpleadosComponent implements OnInit {
+export class EmpleadosComponent {
   public listaDisp:any;
   public postEdit:any;
   public isError = false

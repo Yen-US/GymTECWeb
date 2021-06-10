@@ -74,82 +74,89 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Job Positions Management</h1>
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-plus-circle"></i> Payroll</button>
-                        
-                          
-                    </div>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-3">
+                        <h1 class="h3 mb-0 text-gray-800">Search and Register in a New Gym Class</h1>
+                        <form #formProfile="ngForm" (ngSubmit)="onNew(formProfile)">
+                            
+                            <div class="form-group d-none d-sm-inline-block mb-1">
+                                
+                                <div class="input-group mb-1">
+                                    
+                                    <span class="input-group-text" id="basic-addon3">Branch</span> 
+                                        <select class="form-control" id="inputGroupSelect" name=region ngModel>
+                                            <option value="America">Brach Ex1</option>
+                                            <option value="Asia">Brach Ex2</option>
+                                            <option value="Africa">Brach Ex3</option>
+                                            <option value="Europa">Brach Ex4</option>
+                                        </select>
+                                        <span class="input-group-text" id="basic-addon3">Type</span> 
+                                        <select class="form-control" id="inputGroupSelect" name=Type ngModel>
+                                            <option value="1">Type Ex1</option>
+                                            <option value="Asia">Type Ex2</option>
+                                            <option value="Africa">Type Ex3</option>
+                                            <option value="Europa">Type Ex4</option>
+                                        </select>
+                                        <span class="input-group-text" id="basic-addon3">Start</span> 
+                                        <input class="form-control" type="date" name=date ngModel>
+                                        <span class="input-group-text" id="basic-addon3">End</span> 
+                                        <input class="form-control" type="date" name=date ngModel>
 
+                                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"> Search</i></button>
+                              </div>
+                            </div>
+                    </form>
+                    </div>
                     <!-- Content Row -->
                     <div class="row">
                         
                         <!-- New device card alloes the user to enter information an then hit save, this sends a post to the function On New and creates a new device with the info entered-->
                          <!--Note that just the Serial,Brand,Electrical consumption,Device Category are require, if this infomation is not entered the user is going to receive an error messsage -->
-                        <div class="col-xl-12 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                         <div class="col-xl-12 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Job Position</div>
-                                            <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
-                                                <div class="alert alert-danger" role="alert" *ngIf="isError">
-                                                    Something is wrong!
-                                                </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text bg-primary text-white" id="basic-addon3">ID</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                                                aria-label="Search" aria-describedby="basic-addon3" ngModel required>
-                                                <span class="input-group-text" id="basic-addon3">Name</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                                                aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-2">
+                                                New Gym Class ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ 
+                                            </div>
                                                 
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon3">Description</span>     
-                                                <textarea type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                                                aria-label="Search" aria-describedby="basic-addon3" ngModel required></textarea>
-                                            </div>
-                                                <button class="btn btn-outline-success" type="submit">
-                                                    <i class="bi bi-arrow-90deg-down"> Save New Job Position</i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-md-6 mb-4" *ngFor="let device of listaDisp; index as i">
-                            <div class="card border-left-{{colors[i]}} shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-0">
-                                            <div class="text-xs font-weight-bold text-{{colors[i]}} text-uppercase mb-1">
-                                                {{device.Nombre}}</div>
                                                 <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
                                                     <div class="alert alert-danger" role="alert" *ngIf="isError">
                                                         Something is wrong!
                                                     </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text bg-primary text-white" id="basic-addon3">ID</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required>
-                                                    <span class="input-group-text" id="basic-addon3">Name</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required>
-                                                    
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon3">Description</span>     
-                                                    <textarea type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required></textarea>
-                                                </div>
-                                                    <button class="btn btn-outline-success" type="submit">
-                                                        <i class="bi bi-arrow-90deg-down"> Save New Job Position</i>
+                                                      <div class="input-group mb-1">
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Type</span>  
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Ponerse Mamado" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3" disabled>
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Instructor</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Antonio Cespedes" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  disabled>
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Mode</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Grupal" name=Serie
+                                                        aria-label="Search" aria-describedby="basic-addon3"  disabled>
+                                                        
+                                                      </div>
+                                                      <div class="input-group mb-4">
+                                                        
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Capacity</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="7" name=capacidad
+                                                        aria-label="Search" aria-describedby="basic-addon3"  disabled>
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">Start</span>     
+                                                        <input class="form-control" type="time" value="13:45:00" id="example-time-input " disabled>
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon2">End</span>     
+                                                        <input class="form-control" type="time" value="14:45:00" id="example-time-input" disabled>
+                                                        <span class="input-group-text bg-primary text-white" id="basic-addon3">Date</span>  
+                                                        <input class="form-control" type="date" name=date disabled>
+                                                        
+                                                      </div>
+                                                
+                                                    <button class="btn btn-warning" type="submit">
+                                                        <i class="bi bi-person-bounding-box"> Register</i>
                                                     </button>
                                                 </form>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>

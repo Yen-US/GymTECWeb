@@ -33,6 +33,7 @@ const appRoutes: Routes = [
   { path: 'servicios', component: ServiciosComponent },
   { path: 'inventario', component: InventarioComponent },
   { path: 'gym', component: GymComponent },
+  { path: 'class', component: ClasesComponent },
 
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent }
