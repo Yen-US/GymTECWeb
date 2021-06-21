@@ -28,12 +28,15 @@ public onLogin(form: NgForm){
     if (form.valid) {
       this.json.postJson(1,form.value).subscribe((res:any) => {
         console.log(res);
-        if(res=="Correcto"){
-          this.router.navigate(['/eshop']);
+        if(res=="Password incorrecta"){
+          this.isError = true;
+          
+        }if(res=="Empleado No encontrado"){
+          this.isError = true;
+        }else{
+          this.router.navigate(['/sucursales']);
           this.isError = false;
           this.cookieService.set("login-info",form.value.Correo);
-        }else{
-          this.isError = true;
         }
       }); 
           console.log(form.value)

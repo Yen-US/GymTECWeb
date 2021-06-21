@@ -33,23 +33,31 @@
                                     Something is wrong!
                                   </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="col-sm-4 mb-3 mb-sm-0">
                                         <input type=text class="form-control form-control-user" id="FirstName" name="Nombre"
                                             placeholder="First Name" ngModel required>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <input type=text class="form-control form-control-user" id="LastName" name="Apellido"
-                                            placeholder="Last Name" ngModel required>
+                                    <div class="col-sm-4">
+                                        <input type=text class="form-control form-control-user" id="LastName1" name="Apellido1"
+                                            placeholder="Last Name 1" ngModel required>
                                     </div>
+                                    <div class="col-sm-4">
+                                        <input type=text class="form-control form-control-user" id="LastName2" name="Apellido2"
+                                            placeholder="Last Name 2" ngModel required>
+                                        </div>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <input type=email class="form-control form-control-user" id="InputEmail" name="Correo"
                                         placeholder="Email Address" ngModel required>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <input type=text class="form-control form-control-user" id="InputID" name="Cedula"
+                                        placeholder="ID" ngModel required>
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type=password class="form-control form-control-user" name="Contrasena"
+                                        <input type=password class="form-control form-control-user" name="Password"
                                             id="InputPassword" placeholder="Password" ngModel required> 
                                     </div>
                                     <div class="col-sm-6">
@@ -57,7 +65,7 @@
                                             id="RepeatPassword" placeholder="Repeat Password" required>
                                     </div>
                                 </div>
-                                <div class="input-group mb-3">
+                              <!--  <div class="input-group mb-3">
                                     <span class="input-group-text bg-warning text-white" id="basic-addon3">Continent</span> 
                                     <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name="Continente" placeholder="Choose your region..." ngModel>
                                         <option value="America">America</option>
@@ -66,16 +74,20 @@
                                         <option value="Europa">Europe</option>
                                         <option value="Oceania">Oceania</option>
                                     </select >
-                                  </div>
+                                  </div>-->
                                   
                                 <div class="form-group">
-                                    <input type=text class="form-control form-control-user" id="Country" name="Pais"
-                                        placeholder="Country" ngModel required>
+                                    <input type=text class="form-control form-control-user" id="Provincia" name="Provincia"
+                                        placeholder="Provincia" ngModel required>
                             </div>
                             <div class="form-group">
-                                <input type=text class="form-control form-control-user" id="Address" name="Direccion"
-                                    placeholder="Address" ngModel required>
+                                <input type=text class="form-control form-control-user" id="Distrito" name="Distrito"
+                                    placeholder="Distrito" ngModel required>
                         </div>
+                            <div class="form-group">
+                                <input type=text class="form-control form-control-user" id="Canton" name="Canton"
+                                    placeholder="Canton" ngModel required>
+                            </div>
 
                                 <button type = submit class="btn btn-lg btn-warning btn-block">
                                     Register Account

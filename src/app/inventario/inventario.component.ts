@@ -11,24 +11,47 @@ import { NgForm } from '@angular/forms';
 })
 export class InventarioComponent implements OnInit {
 
-  public listaDisp:any;
+  public listaMach:any;
+  public listaProd:any;
   public postEdit:any;
   constructor(public json:JsonService, private router: Router) { }
   public isError = false
   colors = ['primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark'];
-  //ngOnInit meths, execute always at the beggining when you access this view allows to get the list of devices from the API and assign the same to the listaDisp variable so then can be pulled by the HTML in a for
+  //ngOnInit meths, execute always at the beggining when you access this view allows to get the list of devices from the API and assign the same to the listaMach variable so then can be pulled by the HTML in a for
   ngOnInit(): void {
-    this.json.getJson(2).subscribe((res:any) => {
+    this.json.getJson(9).subscribe((res:any) => {
       console.log(res);
-      this.listaDisp=res;
+      this.listaMach=res;
     });
   }
 //onNew mthod required for the new device card to add new devices, the same passes an NgForm with the informatinon typed by the user and then make the post the API and refresh the page
   public onNew(form: NgForm){
     if (form.valid) {
-      this.json.postJson(2,form.value).subscribe((res:any) => {
+      this.json.postJson(10,form.value).subscribe((res:any) => {
         console.log(res);
-        if(res=="El dispositivo se ha agregado exitosamente"){
+        if(res=="La Maquina se ha Agregado exitosamente"){
+          this.isError = false;
+          window.location.reload();
+        }else{
+          this.isError = true;
+        }
+      });
+          console.log(form.value)
+    } else {
+      this.onIsError();
+    }
+  }
+  public onProd(){
+    this.json.getJson(10).subscribe((res:any) => {
+      console.log(res);
+      this.listaProd=res;
+    });
+  }
+  public onNewProd(form: NgForm){
+    if (form.valid) {
+      this.json.postJson(11,form.value).subscribe((res:any) => {
+        console.log(res);
+        if(res=="Producto agregado"){
           this.isError = false;
           window.location.reload();
         }else{

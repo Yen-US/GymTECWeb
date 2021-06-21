@@ -76,7 +76,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Job Positions Management</h1>
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-plus-circle"></i> Payroll</button>
+                        <button type="button" class="btn btn-success" (click)="onPay()" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-plus-circle"></i> Payroll</button>
                         
                           
                     </div>
@@ -86,7 +86,7 @@
                         
                         <!-- New device card alloes the user to enter information an then hit save, this sends a post to the function On New and creates a new device with the info entered-->
                          <!--Note that just the Serial,Brand,Electrical consumption,Device Category are require, if this infomation is not entered the user is going to receive an error messsage -->
-                        <div class="col-xl-12 col-md-6 mb-4">
+                        <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -98,17 +98,13 @@
                                                     Something is wrong!
                                                 </div>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text bg-primary text-white" id="basic-addon3">ID</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                <span class="input-group-text bg-success text-white" id="basic-addon3">ID</span>     
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=ID
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required>
-                                                <span class="input-group-text" id="basic-addon3">Name</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                                                aria-label="Search" aria-describedby="basic-addon3" ngModel required>
-                                                
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">Description</span>     
-                                                <textarea type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                <textarea type="text" class="form-control bg-light border-0 small" placeholder="" name=Descripcion
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required></textarea>
                                             </div>
                                                 <button class="btn btn-outline-success" type="submit">
@@ -121,33 +117,30 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4" *ngFor="let device of listaDisp; index as i">
+                        <div class="col-xl-6 col-md-6 mb-4" *ngFor="let puest of listaPuest; index as i">
                             <div class="card border-left-{{colors[i]}} shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-0">
                                             <div class="text-xs font-weight-bold text-{{colors[i]}} text-uppercase mb-1">
-                                                {{device.Nombre}}</div>
+                                                Edit Job Position</div>
                                                 <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
                                                     <div class="alert alert-danger" role="alert" *ngIf="isError">
                                                         Something is wrong!
                                                     </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text bg-primary text-white" id="basic-addon3">ID</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required>
-                                                    <span class="input-group-text" id="basic-addon3">Name</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                    <span class="input-group-text bg-{{colors[i]}} text-white" id="basic-addon3">ID</span>     
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{puest.ID}}" name=Serie
                                                     aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                                     
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon3">Description</span>     
-                                                    <textarea type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                    <textarea type="text" class="form-control bg-light border-0 small" placeholder="{{puest.Descripcion}}" name=Serie
                                                     aria-label="Search" aria-describedby="basic-addon3" ngModel required></textarea>
                                                 </div>
-                                                    <button class="btn btn-outline-success" type="submit">
-                                                        <i class="bi bi-arrow-90deg-down"> Save New Job Position</i>
+                                                    <button class="btn btn-{{colors[i]}}" type="submit">
+                                                        <i class="bi bi-arrow-90deg-down"> Save Changes</i>
                                                     </button>
                                                 </form>
                                         </div>
@@ -171,21 +164,32 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="input-group mb-3">
+            
+
+              <form #formNewPay="ngForm" (ngSubmit)="onNewPay(formNewPay)">
+                <div class="alert alert-danger" role="alert" *ngIf="isError">
+                    Something is wrong!
+                </div>
+              <div class="input-group mb-3" >
                 <span class="input-group-text bg-primary text-white" id="basic-addon2">ID</span>  
-                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                aria-label="Search" aria-describedby="basic-addon3"  required>
+                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=ID
+                aria-label="Search" aria-describedby="basic-addon3"  required ngModel>
                 <span class="input-group-text" id="basic-addon2">Description</span>     
-                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                aria-label="Search" aria-describedby="basic-addon3"  required>
+                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Descripcion
+                aria-label="Search" aria-describedby="basic-addon3"  required ngModel>
+                <button type="submit" class="btn btn-info"><i class="bi bi-plus-circle"></i></button>
               </div>
-              <div class="input-group mb-3">
+
+              </form>
+
+              <div class="input-group mb-3" *ngFor="let pay of listaPay; index as i">
                 <span class="input-group-text bg-primary text-white" id="basic-addon2">ID</span>  
-                <input type="text" class="form-control bg-light border-0 small" placeholder="PAY01" name=Serie
+                <input type="text" class="form-control bg-light border-0 small" placeholder="{{pay.ID}}" name=Serie
                 aria-label="Search" aria-describedby="basic-addon3"  required>
                 <span class="input-group-text" id="basic-addon2">Description</span>     
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Monthly Pay" name=Serie
+                <input type="text" class="form-control bg-light border-0 small" placeholder="{{pay.Descripcion}}" name=Serie
                 aria-label="Search" aria-describedby="basic-addon3"  required>
+                <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
               </div>
               
 

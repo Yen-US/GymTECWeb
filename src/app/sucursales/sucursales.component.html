@@ -75,7 +75,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Branch Management</h1>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
+                        <button type="button" (click)="onTreat()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
                             SPA Treatments
                           </button>
                     </div>
@@ -96,59 +96,59 @@
                                                 <div class="alert alert-danger" role="alert" *ngIf="isError">
                                                     Something is wrong!
                                                 </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text bg-success text-white" id="basic-addon3">ID</span>     
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=ID
+                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                                </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">Name</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text bg-primary text-white" id="basic-addon3">Address</span> 
+                                                <span class="input-group-text bg-success text-white" id="basic-addon3">Address</span> 
                                                 <span class="input-group-text" id="basic-addon3">Province</span>  
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Marca
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Provincia
                                                 aria-label="Search" aria-describedby="basic-addon2" ngModel required>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text bg-primary text-white" id="basic-addon3">Address</span> 
+                                                <span class="input-group-text bg-success text-white" id="basic-addon3">Address</span> 
                                                 <span class="input-group-text" id="basic-addon3">Canton</span>  
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Consumo_Electrico
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Canton
                                                 aria-label="Search" aria-describedby="basic-addon2" ngModel required>
                                                 <span class="input-group-text" id="basic-addon3">District</span>  
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Aposento
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Distrito
                                                 aria-label="Search" aria-describedby="basic-addon2" ngModel>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">Opening Date</span>  
-                                                <input class="form-control" type="date" name=date ngModel>
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon3">Business Hours</span>  
-                                                <textarea type="text" class="form-control bg-light border-0 small" name=Decripcion
-                                                aria-label="Search" aria-describedby="basic-addon2" ngModel></textarea>
+                                                <input class="form-control" type="date" name=Fecha_apertura ngModel>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">Administrator</span>  
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Administrator
                                                 aria-label="Search" aria-describedby="basic-addon2" ngModel required>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">Maximum Capacity</span>  
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Max_capacidad
                                                 aria-label="Search" aria-describedby="basic-addon2" ngModel required>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">Phone Numbers</span>  
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Numero
                                                 aria-label="Search" aria-describedby="basic-addon2" ngModel required>
                                             </div>
                                             <div class="input-group form-switch mb-3">
-                                                <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" disabled>
-                                                <span class="input-group-text" id="basic-addon3">Spa Activation</span> 
+                                                <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" name=Spa disabled ngModel>
+                                                <span class="input-group-text" id="basic-addon3" >Spa Activation</span> 
                                                 
                                                 
                                               </div>
                                               <div class="input-group form-switch mb-3">
-                                                <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" disabled>
-                                                <span class="input-group-text" id="basic-addon3">Shop Activation</span> 
+                                                <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" name=Tienda disabled ngModel>
+                                                <span class="input-group-text" id="basic-addon3" >Shop Activation</span> 
                                               </div>
                                             
                                                 <button class="btn btn-outline-success" type="submit">
@@ -166,74 +166,74 @@
 
                         <!-- Edit device card, allows the user to edit each device atribute excluding the serial, just the inactive can be modified  -->
                         <!-- If the device is an active one, the user is not going to the the save button, nevertheless the can see the information of the same in both cases-->
-                        <div class="col-xl-3 col-md-6 mb-4" *ngFor="let device of listaDisp; index as i">
+                        <div class="col-xl-6 col-md-6 mb-4" *ngFor="let suc of listaSuc; index as i">
                             <div class="card border-left-{{colors[i]}} shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-0">
                                             <div class="text-xs font-weight-bold text-{{colors[i]}} text-uppercase mb-1">
-                                                {{device.Nombre}}</div>
-                                                <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
+                                                Edit Branch</div>
+                                                <form #formEdit="ngForm" (ngSubmit)="onEdit(formEdit,suc)">
                                                     <div class="alert alert-danger" role="alert" *ngIf="isError">
                                                         Something is wrong!
                                                     </div>
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text bg-{{colors[i]}} text-white" id="basic-addon3">ID</span>     
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="{{suc.ID}}" name=ID
+                                                        aria-label="Search" aria-describedby="basic-addon3">
+                                                    </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon3">Name</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{suc.Nombre}}" name=Nombre
+                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text bg-primary text-white" id="basic-addon3">Address</span> 
+                                                    <span class="input-group-text bg-{{colors[i]}} text-white" id="basic-addon3">Address</span> 
                                                     <span class="input-group-text" id="basic-addon3">Province</span>  
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Marca
-                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel required>
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{suc.Provincia}}" name=Provincia
+                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text bg-primary text-white" id="basic-addon3">Address</span> 
+                                                    <span class="input-group-text bg-{{colors[i]}} text-white" id="basic-addon3">Address</span> 
                                                     <span class="input-group-text" id="basic-addon3">Canton</span>  
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Consumo_Electrico
-                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel required>
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{suc.Canton}}" name=Canton
+                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel>
                                                     <span class="input-group-text" id="basic-addon3">District</span>  
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Aposento
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{suc.Distrito}}" name=Distrito
                                                     aria-label="Search" aria-describedby="basic-addon2" ngModel>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon3">Opening Date</span>  
-                                                    <input class="form-control" type="date" name=date ngModel>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon3">Business Hours</span>  
-                                                    <textarea type="text" class="form-control bg-light border-0 small" name=Decripcion
-                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel></textarea>
+                                                    <input class="form-control" type="date" name=Fecha_apertura ngModel>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon3">Administrator</span>  
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
-                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel required>
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Administrador
+                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon3">Maximum Capacity</span>  
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
-                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel required>
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{suc.Max_capacidad}}" name=Max_capacidad
+                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon3">Phone Numbers</span>  
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
-                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel required>
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Numero" name=Numero
+                                                    aria-label="Search" aria-describedby="basic-addon2" ngModel>
                                                 </div>
                                                 <div class="input-group form-switch mb-3">
-                                                    <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" disabled>
+                                                    <input class="input-group form-check-input" type="checkbox" name=Spa id="flexSwitchCheckChecked" >
                                                     <span class="input-group-text" id="basic-addon3">Spa Activation</span> 
                                                     
                                                     
                                                   </div>
                                                   <div class="input-group form-switch mb-3">
-                                                    <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" disabled>
+                                                    <input class="input-group form-check-input" type="checkbox" name=Tienda id="flexSwitchCheckChecked" >
                                                     <span class="input-group-text" id="basic-addon3">Shop Activation</span> 
                                                   </div>
                                                 
-                                                    <button class="btn btn-outline-success" type="submit">
-                                                        <i class="bi bi-arrow-90deg-down"> Save New Branch</i>
+                                                    <button class="btn btn-{{colors[i]}}" type="submit">
+                                                        <i class="bi bi-arrow-90deg-down"> Save Changes</i>
                                                     </button>
                                                 </form>
                                         </div>
@@ -261,35 +261,29 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="input-group form-switch mb-4">
-                <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" >
-                <span class="input-group-text bg-primary text-white" id="basic-addon2">#SPA01</span> 
-                <span class="input-group-text" id="basic-addon2">Relaxing massage</span> 
-              </div>
-              <div class="input-group form-switch mb-4">
-                <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" >
-                <span class="input-group-text bg-primary text-white" id="basic-addon2">#SPA02</span> 
-                <span class="input-group-text" id="basic-addon2">Muscle discharge massage</span> 
-              </div>
-              <div class="input-group form-switch mb-4">
-                <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" >
-                <span class="input-group-text bg-primary text-white" id="basic-addon2">#SPA03</span> 
-                <span class="input-group-text" id="basic-addon2">Sauna</span> 
-              </div>
-              <div class="input-group form-switch mb-4">
-                <input class="input-group form-check-input" type="checkbox" id="flexSwitchCheckChecked" >
-                <span class="input-group-text bg-primary text-white" id="basic-addon2">#SPA04</span> 
-                <span class="input-group-text" id="basic-addon2">Steam baths</span> 
-              </div>
-              <div class="input-group mb-4">
+            
+              <form #formNewTreat="ngForm" (ngSubmit)="onNewTreat(formNewTreat)">
+                <div class="alert alert-danger" role="alert" *ngIf="isError">
+                    Something is wrong!
+                </div>
+              <div class="input-group mb-3">
+                
                 <span class="input-group-text bg-primary text-white" id="basic-addon2">ID</span>  
-                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                aria-label="Search" aria-describedby="basic-addon3"  required>
-                <span class="input-group-text" id="basic-addon2">Description</span>     
-                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                aria-label="Search" aria-describedby="basic-addon3"  required>
-                <button type="button" class="btn btn-info"><i class="bi bi-plus-circle"></i></button>
+                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=ID
+                aria-label="Search" aria-describedby="basic-addon3"  required ngModel>
+                <span class="input-group-text" id="basic-addon2">Name</span>     
+                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
+                aria-label="Search" aria-describedby="basic-addon3"  ngModel required>
+                <button type="submit" class="btn btn-info"><i class="bi bi-plus-circle"></i></button>
+            
               </div>
+            </form>
+            <div class="input-group mb-3" *ngFor="let treat of listaTreat; index as i">
+                <span class="input-group-text bg-{{colors[i]}} text-white">#{{treat.ID}}</span> 
+                <span class="input-group-text ">{{treat.Nombre}}</span> 
+                <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
+              </div>
+              
 
         </div>
         <div class="modal-footer">

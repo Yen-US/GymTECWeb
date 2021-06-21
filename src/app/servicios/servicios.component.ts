@@ -10,24 +10,49 @@ import { JsonService } from "../json.service"
   styleUrls: ['./servicios.component.css']
 })
 export class ServiciosComponent implements OnInit {
-  public listaDisp:any;
+  public listaTEquip:any;
+  public listaServ:any;
   public postEdit:any;
   constructor(public json:JsonService, private router: Router) { }
   public isError = false
   colors = ['primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark'];
-  //ngOnInit meths, execute always at the beggining when you access this view allows to get the list of devices from the API and assign the same to the listaDisp variable so then can be pulled by the HTML in a for
+  //ngOnInit meths, execute always at the beggining when you access this view allows to get the list of devices from the API and assign the same to the listaTEquip variable so then can be pulled by the HTML in a for
   ngOnInit(): void {
-    this.json.getJson(2).subscribe((res:any) => {
+    this.json.getJson(7).subscribe((res:any) => {
       console.log(res);
-      this.listaDisp=res;
+      this.listaTEquip=res;
     });
   }
 //onNew mthod required for the new device card to add new devices, the same passes an NgForm with the informatinon typed by the user and then make the post the API and refresh the page
   public onNew(form: NgForm){
     if (form.valid) {
-      this.json.postJson(2,form.value).subscribe((res:any) => {
+      this.json.postJson(8,form.value).subscribe((res:any) => {
         console.log(res);
-        if(res=="El dispositivo se ha agregado exitosamente"){
+        if(res=="El Tipo de Equipo se ha Agregado exitosamente"){
+          this.isError = false;
+          window.location.reload();
+        }else{
+          this.isError = true;
+        }
+      });
+          console.log(form.value)
+    } else {
+      this.onIsError();
+    }
+  }
+
+  public onServ(){
+    this.json.getJson(8).subscribe((res:any) => {
+      console.log(res);
+      this.listaServ=res;
+    });
+  }
+
+  public onNewServ(form: NgForm){
+    if (form.valid) {
+      this.json.postJson(9,form.value).subscribe((res:any) => {
+        console.log(res);
+        if(res=="El Tipo de Equipo se ha Agregado exitosamente"){
           this.isError = false;
           window.location.reload();
         }else{

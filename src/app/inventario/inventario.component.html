@@ -76,7 +76,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Inventory Management</h1>
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-plus-circle"></i> Products</button>
+                        <button type="button" class="btn btn-success" (click)="onProd()" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-plus-circle"></i> Products</button>
                         
                           
                     </div>
@@ -99,7 +99,7 @@
                                                 </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text " id="basic-addon3">Brand</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Marca
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                                 <span class="input-group-text" id="basic-addon3">Serial</span>     
                                                 <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
@@ -107,22 +107,22 @@
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text " id="basic-addon3">Equipment Type</span> 
-                                                <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name="Continente" placeholder="Choose your region..." ngModel>
-                                                    <option value="America">Cintas de correr</option>
-                                                    <option value="Asia">Bicicletas estacionarias</option>
-                                                    <option value="Africa">Multigimnasios</option>
-                                                    <option value="Europa">Remos</option>
-                                                    <option value="Europa">Pesas</option>
+                                                <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name=Tipo ngModel>
+                                                    <option value="Cintas de correr">Cintas de correr</option>
+                                                    <option value="Bicicletas estacionarias">Bicicletas estacionarias</option>
+                                                    <option value="Multigimnasios">Multigimnasios</option>
+                                                    <option value="Remos">Remos</option>
+                                                    <option value="Pesas">Pesas</option>
                                                 </select>
                                               </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text " id="basic-addon3">Cost</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Costo
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text " id="basic-addon3">Branch</span> 
-                                                <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name="Continente" placeholder="Choose your region..." ngModel>
+                                                <select class="form-control form-control-user" aria-describedby="basic-addon3" name=ID_sucursal ngModel>
                                                     <option value="America">Branch Ex1</option>
                                                         <option value="Asia">Branch Ex2</option>
                                                         <option value="Africa">Branch Ex3</option>
@@ -139,20 +139,20 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4" *ngFor="let device of listaDisp; index as i">
+                        <div class="col-xl-6 col-md-6 mb-4" *ngFor="let mach of listaMach; index as i">
                             <div class="card border-left-{{colors[i]}} shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-0">
                                             <div class="text-xs font-weight-bold text-{{colors[i]}} text-uppercase mb-1">
-                                                {{device.Nombre}}</div>
+                                                Edit Gym Machine</div>
                                                 <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
                                                     <div class="alert alert-danger" role="alert" *ngIf="isError">
                                                         Something is wrong!
                                                     </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text " id="basic-addon3">Brand</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{mach.Nombre}}" name=Serie
                                                     aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                                     <span class="input-group-text" id="basic-addon3">Serial</span>     
                                                     <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
@@ -182,8 +182,8 @@
                                                             <option value="Europa">Branch Ex4</option>coun
                                                     </select>
                                                   </div>
-                                                    <button class="btn btn-outline-success" type="submit">
-                                                        <i class="bi bi-arrow-90deg-down"> Save New Equipment Type</i>
+                                                    <button class="btn btn-{{colors[i]}}" type="submit">
+                                                        <i class="bi bi-arrow-90deg-down"> Save Changes</i>
                                                     </button>
                                                 </form>
                                         </div>
@@ -207,33 +207,38 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            <form #formNewProd="ngForm" (ngSubmit)="onNewProd(formNewProd)">
+                <div class="alert alert-danger" role="alert" *ngIf="isError">
+                    Something is wrong!
+                </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon2">Name</span>  
-                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                aria-label="Search" aria-describedby="basic-addon3"  required>
+                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
+                aria-label="Search" aria-describedby="basic-addon3"  ngModel required>
                 <span class="input-group-text" id="basic-addon2">BarCode</span>     
-                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                aria-label="Search" aria-describedby="basic-addon3"  required>
+                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Bar_code
+                aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                 <span class="input-group-text" id="basic-addon2">Cost</span>     
-                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                aria-label="Search" aria-describedby="basic-addon3"  required>
+                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Costo
+                aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                 <span class="input-group-text" id="basic-addon2">Description</span>     
-                <textarea type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
-                aria-label="Search" aria-describedby="basic-addon3"  required></textarea>
-                <button type="button" class="btn btn-info"><i class="bi bi-plus-circle"></i></button>
+                <textarea type="text" class="form-control bg-light border-0 small" placeholder="" name=Descripcion
+                aria-label="Search" aria-describedby="basic-addon3" ngModel required></textarea>
+                <button type="submit" class="btn btn-info"><i class="bi bi-plus-circle"></i></button>
               </div>
-              <div class="input-group mb-3">
+            </form>
+              <div class="input-group mb-3" *ngFor="let prod of listaProd; index as i">
                 <span class="input-group-text" id="basic-addon2">Name</span>  
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Suplemento" name=Serie
+                <input type="text" class="form-control bg-light border-0 small" placeholder="{{prod.Nombre}}" name=Serie
                 aria-label="Search" aria-describedby="basic-addon3"  required>
                 <span class="input-group-text" id="basic-addon2">BarCode</span>     
-                <input type="text" class="form-control bg-light border-0 small" placeholder="1321" name=Serie
+                <input type="text" class="form-control bg-light border-0 small" placeholder="{{prod.Bar_code}}" name=Serie
                 aria-label="Search" aria-describedby="basic-addon3"  required>
                 <span class="input-group-text" id="basic-addon2">Cost</span>     
-                <input type="text" class="form-control bg-light border-0 small" placeholder="15000" name=Serie
+                <input type="text" class="form-control bg-light border-0 small" placeholder="{{prod.Costo}}" name=Serie
                 aria-label="Search" aria-describedby="basic-addon3"  required>
                 <span class="input-group-text" id="basic-addon2">Description</span>     
-                <textarea type="text" class="form-control bg-light border-0 small" placeholder="Suplemento nutricional para deporte" name=Serie
+                <textarea type="text" class="form-control bg-light border-0 small" placeholder="{{prod.Descripcion}}" name=Serie
                 aria-label="Search" aria-describedby="basic-addon3"  required></textarea>
                 <button type="button" class="btn btn-danger"><i class="bi bi-dash-circle"></i></button>
               </div>

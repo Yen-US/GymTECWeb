@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=emp-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Gym TEC- Branch Manager</title>
@@ -73,7 +73,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Employee Management</h1>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
+                        <button type="button" (click)="onPlan()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
                             Payroll Generation
                           </button>
                     </div>
@@ -81,8 +81,8 @@
                     <!-- Content Row -->
                     <div class="row">
                         
-                        <!-- New device card alloes the user to enter information an then hit save, this sends a post to the function On New and creates a new device with the info entered-->
-                         <!--Note that just the Serial,Brand,Electrical consumption,Device Category are require, if this infomation is not entered the user is going to receive an error messsage -->
+                        <!-- New emp card alloes the user to enter information an then hit save, this sends a post to the function On New and creates a new emp with the info entered-->
+                         <!--Note that just the Serial,Brand,Electrical consumption,emp Category are require, if this infomation is not entered the user is going to receive an error messsage -->
                         <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
@@ -96,58 +96,60 @@
                                                 </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">Identification</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Cedula
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon3">Full Name</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                <span class="input-group-text" id="basic-addon3">Name</span>     
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Nombre
+                                                aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon3">Last Name 1</span>     
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Apellido1
+                                                aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                                <span class="input-group-text" id="basic-addon3">Last Name 2</span>     
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Apellido2
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text bg-primary text-white" id="basic-addon3">Address</span> 
                                                 <span class="input-group-text" id="basic-addon3">Province</span>  
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Marca
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Provincia
                                                 aria-label="Search" aria-describedby="basic-addon2" ngModel required>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text bg-primary text-white" id="basic-addon3">Address</span> 
                                                 <span class="input-group-text" id="basic-addon3">Canton</span>  
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Consumo_Electrico
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Canton
                                                 aria-label="Search" aria-describedby="basic-addon2" ngModel required>
                                                 <span class="input-group-text" id="basic-addon3">District</span>  
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Aposento
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Distrito
                                                 aria-label="Search" aria-describedby="basic-addon2" ngModel>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text " id="basic-addon3">Job Position</span> 
-                                                <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name="Continente" placeholder="Choose your region..." ngModel>
-                                                    <option value="America">Administrator</option>
-                                                    <option value="Asia">Instructor</option>
-                                                    <option value="Africa">Spa Dependent</option>
-                                                    <option value="Europa">Shop Dependent</option>
+                                                <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name="ID_Puesto" ngModel>
+                                                    <option *ngFor="let pos of listaPos; index as i" value="{{pos.ID}}">{{pos.Descripcion}}</option>
                                                 </select >
                                               </div>
                                               <div class="input-group mb-3">
-                                                <span class="input-group-text " id="basic-addon3">Branch</span> 
-                                                <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name="Continente" placeholder="Choose your region..." ngModel>
-                                                    <option value="America">Branch Ex1</option>
-                                                    <option value="Asia">Branch Ex2</option>
-                                                    <option value="Africa">Branch Ex3</option>
-                                                    <option value="Europa">Branch Ex4</option>
+                                                <span class="input-group-text " id="basic-addon3">Payroll</span> 
+                                                <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name="ID" ngModel>
+                                                    <option *ngFor="let pay of listaPay; index as i" value="{{pay.ID}}">{{pay.Descripcion}}</option>
                                                 </select >
                                               </div>
                                               <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">Salary</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="$100000" name=Serie
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="$100000" name=Salario
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                             </div>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon3">Email</span>     
-                                                <input type="email" class="form-control bg-light border-0 small" placeholder="you@email.com" name=Serie
+                                                <input type="email" class="form-control bg-light border-0 small" placeholder="you@email.com" name=Correo
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                                 <span class="input-group-text" id="basic-addon3">Password</span>     
-                                                <input type="text" class="form-control bg-light border-0 small" placeholder="Maincra" name=Serie
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="Maincra" name=Password
                                                 aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                             </div>
                                             
@@ -164,46 +166,56 @@
                             </div>
                         </div>
 
-                        <!-- Edit device card, allows the user to edit each device atribute excluding the serial, just the inactive can be modified  -->
-                        <!-- If the device is an active one, the user is not going to the the save button, nevertheless the can see the information of the same in both cases-->
-                        <div class="col-xl-3 col-md-6 mb-4" *ngFor="let device of listaDisp; index as i">
+                        <!-- Edit emp card, allows the user to edit each emp atribute excluding the serial, just the inactive can be modified  -->
+                        <!-- If the emp is an active one, the user is not going to the the save button, nevertheless the can see the information of the same in both cases-->
+                        <div class="col-xl-6 col-md-6 mb-4" *ngFor="let emp of listaEmp; index as i">
                             <div class="card border-left-{{colors[i]}} shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-0">
                                             <div class="text-xs font-weight-bold text-{{colors[i]}} text-uppercase mb-1">
-                                                {{device.Nombre}}</div>
+                                                EDIT EMPLOYEE
+                                                </div>
                                                 <form #formNew="ngForm" (ngSubmit)="onNew(formNew)">
                                                     <div class="alert alert-danger" role="alert" *ngIf="isError">
                                                         Something is wrong!
                                                     </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon3">Identification</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{emp.Cedula}}" name=Serie
                                                     aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon3">Full Name</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Serie
+                                                    <span class="input-group-text" id="basic-addon3">Name</span>     
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{emp.Nombre}}" name=Nombre
                                                     aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text bg-primary text-white" id="basic-addon3">Address</span> 
+                                                    <span class="input-group-text" id="basic-addon3">Last Name 1</span>     
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{emp.Apellido1}}" name=Apellido1
+                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                                    <span class="input-group-text" id="basic-addon3">Last Name 2</span>     
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{emp.Apellido2}}" name=Apellido2
+                                                    aria-label="Search" aria-describedby="basic-addon3" ngModel required>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text bg-{{colors[i]}} text-white" id="basic-addon3">Address</span> 
                                                     <span class="input-group-text" id="basic-addon3">Province</span>  
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Marca
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{emp.Provincia}}" name=Marca
                                                     aria-label="Search" aria-describedby="basic-addon2" ngModel required>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text " id="basic-addon3">Address</span> 
+                                                    <span class="input-group-text bg-{{colors[i]}} text-white" id="basic-addon3">Address</span> 
                                                     <span class="input-group-text" id="basic-addon3">Canton</span>  
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Consumo_Electrico
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{emp.Canton}}" name=Consumo_Electrico
                                                     aria-label="Search" aria-describedby="basic-addon2" ngModel required>
                                                     <span class="input-group-text" id="basic-addon3">District</span>  
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="" name=Aposento
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{emp.Distrito}}" name=Aposento
                                                     aria-label="Search" aria-describedby="basic-addon2" ngModel>
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text " id="basic-addon3">Job Position</span> 
+                                                    <span class="input-group-text " id="basic-addon3">Job Position</span>
+                                                    <span class="input-group-text bg-{{colors[i]}} text-white" id="basic-addon3">{{emp.ID_puesto}}</span> 
                                                     <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name="Continente" placeholder="Choose your region..." ngModel>
                                                         <option value="America">Administrator</option>
                                                         <option value="Asia">Instructor</option>
@@ -212,8 +224,9 @@
                                                     </select >
                                                   </div>
                                                   <div class="input-group mb-3">
-                                                    <span class="input-group-text bg-primary text-white" id="basic-addon3">Branch</span> 
-                                                    <select class="form-control form-control-user" aria-describedby="basic-addon3" id="inputGroupSelect" name="Continente" placeholder="Choose your region..." ngModel>
+                                                    <span class="input-group-text" id="basic-addon3">Payroll</span>
+                                                    <span class="input-group-text bg-{{colors[i]}} text-white" id="basic-addon3" >{{emp.ID_tipo_planilla}}</span> 
+                                                    <select class="form-control form-control-user" aria-describedby="basic-addon3" name="Continente" placeholder="Choose your region..." ngModel>
                                                         <option value="America">Branch Ex1</option>
                                                         <option value="Asia">Branch Ex2</option>
                                                         <option value="Africa">Branch Ex3</option>
@@ -222,19 +235,19 @@
                                                   </div>
                                                   <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon3">Salary</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="$100000" name=Serie
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="{{emp.Salario}}" name=Serie
                                                     aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon3">Email</span>     
-                                                    <input type="email" class="form-control bg-light border-0 small" placeholder="you@email.com" name=Serie
+                                                    <input type="email" class="form-control bg-light border-0 small" placeholder="{{emp.Correo}}" name=Serie
                                                     aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                                     <span class="input-group-text" id="basic-addon3">Password</span>     
-                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Maincra" name=Serie
+                                                    <input type="text" class="form-control bg-light border-0 small" placeholder="*******" name=Serie
                                                     aria-label="Search" aria-describedby="basic-addon3" ngModel required>
                                                 </div>
                                                 
-                                                    <button class="btn btn-outline-success" type="submit">
+                                                    <button class="btn btn-{{colors[i]}}" type="submit">
                                                         <i class="bi bi-arrow-90deg-down"> Save Employee</i>
                                                     </button>
                                                 </form>
@@ -260,16 +273,6 @@
       <div class="modal-content">
         <div class="modal-header">
                 <h5 class="modal-title" id="ModalLabel">Payroll Generation</h5>
-                <div class="input-group mb-1">
-                    <span class="input-group-text bg-primary text-white" id="basic-addon3">Branch</span> 
-                    <select class="form-control" aria-describedby="basic-addon3" id="inputGroupSelect" name="Continente" placeholder="" ngModel>
-                        <option value="America">Branch Ex1</option>
-                        <option value="Asia">Branch Ex2</option>
-                        <option value="Africa">Branch Ex3</option>
-                        <option value="Europa">Branch Ex4</option>
-                    </select >
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i></button>
-                  </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -289,11 +292,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>402480798</td>
-                          <td>Yenson Steven Umaña Solano</td>
-                          <td>300</td>
-                          <td>$25000</td>
+                        <tr *ngFor="let plan of listaPlan; index as i">
+                          <td>{{plan.Cedula}}</td>
+                          <td>{{plan.Nombre}} {{plan.Apellido1}} {{plan.Apellido2}}</td>
+                          <td>{{plan.Clases}} / {{plan.Horas}}</td>
+                          <td>{{plan.Pago}}</td>
                         </tr>
                       </tbody>
                     </table>

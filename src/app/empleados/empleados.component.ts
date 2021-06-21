@@ -16,6 +16,10 @@ import htmlToPdfmake from "html-to-pdfmake"
 })
 export class EmpleadosComponent {
   public listaDisp:any;
+  public listaEmp:any;
+  public listaPlan:any;
+  public listaPay:any;
+  public listaPos:any;
   public postEdit:any;
   public isError = false
   colors = ['primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark','primary', 'secondary', 'success','info', 'danger', 'warning','dark'];
@@ -39,10 +43,21 @@ export class EmpleadosComponent {
   //ngOnInit executes every time this view opens and pull the email information of the user logged in  required for the first report, this saves the info in the cookieValue variable 
   ngOnInit(): void {
     this.cookieValue=this.cookieService.get("login-info");
-    this.json.getJson(2).subscribe((res:any) => {
+    this.json.getJson(1).subscribe((res:any) => {
       console.log(res);
-      this.listaDisp=res;
+      this.listaEmp=res;
     });
+    this.json.getJson(6).subscribe((res:any) => {
+      console.log(res);
+      this.listaPay=res;
+    });
+    this.json.getJson(5).subscribe((res:any) => {
+      console.log(res);
+      this.listaPos=res;
+    });
+    
+    
+    
   }
   //onProfile used to take the report selected by the user and update the rep variable with the report with either a POST ot get as needed, this also trigers the cRep variable (current report) and change it to display the list and get ready the html to export as a PDF
   public onProfile(form: NgForm){
@@ -85,20 +100,27 @@ export class EmpleadosComponent {
 
 //onNew mthod required for the new device card to add new devices, the same passes an NgForm with the informatinon typed by the user and then make the post the API and refresh the page
   public onNew(form: NgForm){
+    
     if (form.valid) {
-      this.json.postJson(2,form.value).subscribe((res:any) => {
-        console.log(res);
-        if(res=="El dispositivo se ha agregado exitosamente"){
-          this.isError = false;
-          window.location.reload();
-        }else{
-          this.isError = true;
-        }
-      });
+        this.json.postJson(3,form.value).subscribe((res:any) => {  
+          console.log(res);
+          if(res=="Se agrego correctamente"){
+            this.isError = false;
+            window.location.reload();
+          }else{
+            this.isError = true;
+          }
+        });
           console.log(form.value)
     } else {
       this.onIsError();
     }
+  }
+  public onPlan(){
+    this.json.getJson(2).subscribe((res:any) => {
+      console.log(res);
+      this.listaPlan=res;
+    });
   }
   //OnEdit methodd required by the edit info card to edit the information of the existent devices, before it passes the information verify that the field is not empty and if not replaces the device onformation and then make the post to the API
   public onEdit(form: NgForm, disp:any){

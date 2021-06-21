@@ -16,11 +16,11 @@ export class RegisterComponent {
   public isError = false
   public OnInit(){}
 //method on register get the user information and if valid send the information to the API with a POST
-  public onRegister(form: NgForm){
+  public onRegister(form: NgForm){ 
     if (form.valid) {
       this.json.postJson(2,form.value).subscribe((res:any) => {
         console.log(res);
-        if(res=="El usuario se ha agregado exitosamente"){
+        if(res=="Empleado Agregado"){
           this.router.navigate(['/login']);
           this.isError = false;
         }else{
@@ -29,7 +29,7 @@ export class RegisterComponent {
       }); 
           console.log(form.value)
     } else {
-      this.onIsError();
+      this.onIsError(); 
     }
   }
   //method onIsError used to trigger the error message and timeout the same after displaying 
